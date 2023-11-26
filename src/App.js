@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+// src/App.js
+import React, { useState } from 'react';
+import ClienteApp from './components/ClienteApp';
+import ClienteForm from './components/ClienteForm';  // Importa el componente ClienteForm
 import './App.css';
 
 function App() {
+  const [mostrarBusqueda, setMostrarBusqueda] = useState(true);
+
+  const toggleVista = () => {
+    setMostrarBusqueda(!mostrarBusqueda);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>OpenPay Clientes</h1>
+      <button className="container"onClick={toggleVista}>
+        {mostrarBusqueda ? 'Crear Usuario' : 'Buscar Usuario'}
+      </button>
+      <div >
+      {mostrarBusqueda ? <ClienteApp /> : <ClienteForm />}
+      </div>
     </div>
   );
 }
